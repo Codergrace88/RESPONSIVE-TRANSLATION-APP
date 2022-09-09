@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h1>Translation</h1> 
+  <input type="text" id="input-el">
+  <button id="btn">Translate</button>
+    <p id="text"></p>
+
+
+  <script>
+    const inputEl = document.getElementById('input-el')
+    const Btn = document.getElementById('btn')
+    const api_url = `https://api.funtranslations.com/translate/minion.json`
+  let text = document.getElementById('text')
+    Btn.addEventListener('click', translate)
+
+    function translate(){
+        let inputVal = inputEl.value
+        newUrl = `${api_url}?text=${inputVal}`
+        fetch(newUrl).then((data) => data.json()).then((data)=>{
+            console.log(data)
+            text.innerHTML= data.contents.translated
+        })
+       
+    }
+    
+    
+  </script>
+</body>
+</html>
